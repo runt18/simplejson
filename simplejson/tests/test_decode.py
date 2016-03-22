@@ -9,7 +9,7 @@ from simplejson import OrderedDict
 class TestDecode(TestCase):
     if not hasattr(TestCase, 'assertIs'):
         def assertIs(self, a, b):
-            self.assertTrue(a is b, '%r is %r' % (a, b))
+            self.assertTrue(a is b, '{0!r} is {1!r}'.format(a, b))
 
     def test_decimal(self):
         rval = json.loads('1.1', parse_float=decimal.Decimal)

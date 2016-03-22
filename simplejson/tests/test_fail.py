@@ -117,7 +117,7 @@ class TestFail(TestCase):
             except json.JSONDecodeError:
                 pass
             else:
-                self.fail("Expected failure for fail%d.json: %r" % (idx, doc))
+                self.fail("Expected failure for fail{0:d}.json: {1!r}".format(idx, doc))
 
     def test_array_decoder_issue46(self):
         # http://code.google.com/p/simplejson/issues/detail?id=46
@@ -131,7 +131,7 @@ class TestFail(TestCase):
                 self.assertEqual(e.colno, 2)
             except Exception:
                 e = sys.exc_info()[1]
-                self.fail("Unexpected exception raised %r %s" % (e, e))
+                self.fail("Unexpected exception raised {0!r} {1!s}".format(e, e))
             else:
                 self.fail("Unexpected success parsing '[,]'")
 
@@ -165,12 +165,12 @@ class TestFail(TestCase):
                 self.assertEqual(
                     e.msg[:len(msg)],
                     msg,
-                    "%r doesn't start with %r for %r" % (e.msg, msg, data))
+                    "{0!r} doesn't start with {1!r} for {2!r}".format(e.msg, msg, data))
                 self.assertEqual(
                     e.pos, idx,
-                    "pos %r != %r for %r" % (e.pos, idx, data))
+                    "pos {0!r} != {1!r} for {2!r}".format(e.pos, idx, data))
             except Exception:
                 e = sys.exc_info()[1]
-                self.fail("Unexpected exception raised %r %s" % (e, e))
+                self.fail("Unexpected exception raised {0!r} {1!s}".format(e, e))
             else:
-                self.fail("Unexpected success parsing '%r'" % (data,))
+                self.fail("Unexpected success parsing '{0!r}'".format(data))

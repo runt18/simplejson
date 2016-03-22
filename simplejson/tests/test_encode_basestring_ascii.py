@@ -39,7 +39,7 @@ class TestEncodeBaseStringAscii(TestCase):
             #    '{0!r} != {1!r} for {2}({3!r})'.format(
             #        result, expect, fname, input_string))
             self.assertEqual(result, expect,
-                '%r != %r for %s(%r)' % (result, expect, fname, input_string))
+                '{0!r} != {1!r} for {2!s}({3!r})'.format(result, expect, fname, input_string))
 
     def test_sorted_dict(self):
         items = [('one', 1), ('two', 2), ('three', 3), ('four', 4), ('five', 5)]
