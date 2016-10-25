@@ -33,9 +33,9 @@ ESCAPE_DCT = {
 }
 for i in range(0x20):
     #ESCAPE_DCT.setdefault(chr(i), '\\u{0:04x}'.format(i))
-    ESCAPE_DCT.setdefault(chr(i), '\\u%04x' % (i,))
+    ESCAPE_DCT.setdefault(chr(i), '\\u{0:04x}'.format(i))
 for i in [0x2028, 0x2029]:
-    ESCAPE_DCT.setdefault(unichr(i), '\\u%04x' % (i,))
+    ESCAPE_DCT.setdefault(unichr(i), '\\u{0:04x}'.format(i))
 
 FLOAT_REPR = repr
 
@@ -72,14 +72,14 @@ def py_encode_basestring_ascii(s, _PY3=PY3):
             n = ord(s)
             if n < 0x10000:
                 #return '\\u{0:04x}'.format(n)
-                return '\\u%04x' % (n,)
+                return '\\u{0:04x}'.format(n)
             else:
                 # surrogate pair
                 n -= 0x10000
                 s1 = 0xd800 | ((n >> 10) & 0x3ff)
                 s2 = 0xdc00 | (n & 0x3ff)
                 #return '\\u{0:04x}\\u{1:04x}'.format(s1, s2)
-                return '\\u%04x\\u%04x' % (s1, s2)
+                return '\\u{0:04x}\\u{1:04x}'.format(s1, s2)
     return '"' + str(ESCAPE_ASCII.sub(replace, s)) + '"'
 
 

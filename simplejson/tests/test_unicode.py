@@ -55,7 +55,7 @@ class TestUnicode(TestCase):
         for i in range(0, 0xd7ff):
             u = unichr(i)
             #s = '"\\u{0:04x}"'.format(i)
-            s = '"\\u%04x"' % (i,)
+            s = '"\\u{0:04x}"'.format(i)
             self.assertEqual(json.loads(s), u)
 
     def test_object_pairs_hook_with_unicode(self):
